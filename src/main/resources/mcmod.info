@@ -1,0 +1,12 @@
+[
+{
+  "modid": "railcraft_ender_signals",
+  "name": "Railcraft Ender Signals Addon",
+  "description": "This mod adds extra signal blocks to the mod Railcraft, by CovertJaguar.",
+  "version": "0.1.0",
+  "mcversion": "1.7.10",
+  "authorList": ["HajdaM"],
+  "logoFile": "assets/railcraft_ender/logo.png",
+  "RequiredMods": ["Railcraft"]
+}
+]
