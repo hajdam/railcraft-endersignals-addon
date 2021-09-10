@@ -3,7 +3,7 @@ package mods.railcraft_ender.common.blocks.signals;
 import mods.railcraft.api.signals.IControllerTile;
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft_ender.api.signals.EnderSignalController;
-import mods.railcraft.common.blocks.signals.TileBoxBase;
+import mods.railcraft_ender.common.blocks.signals.TileBoxBase;
 import mods.railcraft_ender.common.gui.GuiHandler;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.util.misc.Game;

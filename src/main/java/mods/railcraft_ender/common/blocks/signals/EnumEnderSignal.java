@@ -5,11 +5,11 @@ import java.util.List;
 import mods.railcraft.client.render.IIconProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.signals.ISignalTileDefinition;
-import mods.railcraft.common.blocks.signals.TileSignalFoundation;
+import mods.railcraft_ender.common.blocks.signals.ISignalTileDefinition;
+import mods.railcraft_ender.common.blocks.signals.TileSignalFoundation;
 import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
+import mods.railcraft_ender.common.blocks.RailcraftEnderBlocks;
 import net.minecraft.block.Block;
 
 public enum EnumEnderSignal implements IIconProvider, ISignalTileDefinition {
@@ -45,12 +45,12 @@ public enum EnumEnderSignal implements IIconProvider, ISignalTileDefinition {
     }
 
     public ItemStack getItem(int qty) {
-        return new ItemStack(RailcraftBlocks.getBlockSignal(), qty, ordinal());
+        return new ItemStack(RailcraftEnderBlocks.getBlockSignal(), qty, ordinal());
     }
 
     @Override
     public String getTag() {
-        return "tile.railcraft.signal." + tag;
+        return "tile.railcraft_ender.signal." + tag;
     }
 
     public Module getModule() {
@@ -109,7 +109,7 @@ public enum EnumEnderSignal implements IIconProvider, ISignalTileDefinition {
 
     @Override
     public Block getBlock() {
-        return RailcraftBlocks.getBlockSignal();
+        return RailcraftEnderBlocks.getBlockSignal();
     }
 
     @Override

@@ -23,15 +23,6 @@ public class Railcraft_Ender {
     public static CommonProxy proxy;
 
     @EventHandler
-    public static void init(FMLInitializationEvent event) {
-        if (ModuleManager.Module.SIGNALS.isEnabled()) {
-            ModuleSignals.init();
-        }
-
-        proxy.initClient();
-    }
-
-    @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         if (ModuleManager.Module.SIGNALS.isEnabled()) {
             ModuleSignals.preInit();
@@ -40,6 +31,15 @@ public class Railcraft_Ender {
         proxy.preInitClient();
     }
     
+    @EventHandler
+    public static void init(FMLInitializationEvent event) {
+        if (ModuleManager.Module.SIGNALS.isEnabled()) {
+            ModuleSignals.init();
+        }
+
+        proxy.initClient();
+    }
+
     public static Railcraft_Ender getMod() {
         return instance;
     }

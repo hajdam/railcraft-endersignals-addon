@@ -17,9 +17,9 @@ public enum EnumGui {
 
     public static EnumGui fromOrdinal(int i) {
         switch (i) {
-            case 1:
+            case 0:
                 return BOX_ENDER_CONTROLLER;
-            case 2:
+            case 1:
                 return BOX_ENDER_RECEIVER;
         }
 

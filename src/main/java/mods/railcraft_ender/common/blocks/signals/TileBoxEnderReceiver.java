@@ -13,11 +13,10 @@ import net.minecraftforge.common.util.ForgeDirection;
 import mods.railcraft.api.signals.IReceiverTile;
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft.api.signals.SignalController;
-import mods.railcraft.common.blocks.signals.TileBoxBase;
+import mods.railcraft_ender.common.blocks.signals.TileBoxBase;
 import mods.railcraft.common.blocks.signals.IAspectActionManager;
-import mods.railcraft.common.blocks.signals.TileBoxActionManager;
-import mods.railcraft.common.gui.EnumGui;
-import mods.railcraft.common.gui.GuiHandler;
+import mods.railcraft_ender.common.gui.EnumGui;
+import mods.railcraft_ender.common.gui.GuiHandler;
 import mods.railcraft.common.plugins.buildcraft.triggers.IAspectProvider;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
@@ -40,7 +39,7 @@ public class TileBoxEnderReceiver extends TileBoxActionManager implements IAspec
         if (player.isSneaking())
             return false;
         if (Game.isHost(worldObj))
-            GuiHandler.openGui(EnumGui.BOX_RECEIVER, player, worldObj, xCoord, yCoord, zCoord);
+            GuiHandler.openGui(EnumGui.BOX_ENDER_RECEIVER, player, worldObj, xCoord, yCoord, zCoord);
         return true;
     }
 
