@@ -13,7 +13,7 @@ public class RenderBlockSignal extends BlockRenderer {
         super(RailcraftEnderBlocks.getBlockSignal());
         init();
     }
-    
+
     private void init() {
         addCombinedRenderer(EnumEnderSignal.BOX_ENDER_RECEIVER, new RenderSignalBox(EnumEnderSignal.BOX_ENDER_RECEIVER));
         addCombinedRenderer(EnumEnderSignal.BOX_ENDER_CONTROLLER, new RenderSignalBox(EnumEnderSignal.BOX_ENDER_CONTROLLER));
@@ -21,7 +21,7 @@ public class RenderBlockSignal extends BlockRenderer {
 
     public void addCombinedRenderer(EnumEnderSignal type, ICombinedRenderer renderer) {
         addCombinedRenderer(type.ordinal(), renderer);
-        if(renderer instanceof TileEntitySpecialRenderer){
+        if (renderer instanceof TileEntitySpecialRenderer) {
             ClientRegistry.bindTileEntitySpecialRenderer(type.getTileClass(), (TileEntitySpecialRenderer) renderer);
         }
     }

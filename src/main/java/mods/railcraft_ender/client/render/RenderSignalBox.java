@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
-import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.signals.BlockSignalRailcraft;
 import mods.railcraft_ender.common.blocks.signals.TileBoxBase;
 import net.minecraft.util.IIcon;
@@ -84,24 +83,6 @@ public class RenderSignalBox extends RenderTESRSignals implements ICombinedRende
         info.renderSide[0] = false;
         info.renderSide[1] = false;
 
-      /*  // Aspect
-        for (int side = 2; side < 6; side++) {
-            SignalAspect aspect = tile.getBoxSignalAspect(ForgeDirection.getOrientation(side));
-            if (!aspect.isLit())
-                aspect = SignalAspect.OFF;
-            IIcon lamp = BlockSignalRailcraft.texturesLampBox[aspect.getTextureIndex()];
-            info.texture[2] = lamp;
-            info.texture[3] = lamp;
-            info.texture[4] = lamp;
-            info.texture[5] = lamp;
-            info.renderSide[2] = side == 2 && !side2;
-            info.renderSide[3] = side == 3 && !side3;
-            info.renderSide[4] = side == 4 && !side4;
-            info.renderSide[5] = side == 5 && !side5;
-            if (!renderblocks.hasOverrideBlockTexture())
-                info.brightness = aspect.getTextureBrightness();
-            RenderFakeBlock.renderBlock(info, iBlockAccess, x, y, z, (info.brightness < 0), false);
-        }*/
         info.brightness = -1;
         info.setRenderAllSides();
 

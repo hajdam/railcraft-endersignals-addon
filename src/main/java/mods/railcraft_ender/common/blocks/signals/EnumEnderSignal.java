@@ -5,8 +5,6 @@ import java.util.List;
 import mods.railcraft.client.render.IIconProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import mods.railcraft_ender.common.blocks.signals.ISignalTileDefinition;
-import mods.railcraft_ender.common.blocks.signals.TileSignalFoundation;
 import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
 import mods.railcraft_ender.common.blocks.RailcraftEnderBlocks;
@@ -63,8 +61,9 @@ public enum EnumEnderSignal implements IIconProvider, ISignalTileDefinition {
     }
 
     public TileSignalFoundation getBlockEntity() {
-        if (tile == null)
+        if (tile == null) {
             return null;
+        }
         try {
             return tile.newInstance();
         } catch (Exception ex) {
@@ -87,8 +86,9 @@ public enum EnumEnderSignal implements IIconProvider, ISignalTileDefinition {
     }
 
     public static EnumEnderSignal fromId(int id) {
-        if (id < 0 || id >= VALUES.length)
+        if (id < 0 || id >= VALUES.length) {
             return BOX_ENDER_CONTROLLER;
+        }
         return VALUES[id];
     }
 
@@ -103,7 +103,9 @@ public enum EnumEnderSignal implements IIconProvider, ISignalTileDefinition {
 
     @Override
     public boolean isEnabled() {
-        if (module == null) return false;
+        if (module == null) {
+            return false;
+        }
         return ModuleManager.isModuleLoaded(getModule()) && getBlock() != null;
     }
 

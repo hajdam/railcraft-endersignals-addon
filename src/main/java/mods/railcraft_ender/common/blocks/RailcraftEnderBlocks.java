@@ -40,8 +40,9 @@ public class RailcraftEnderBlocks extends BlockSignalBase {
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
         for (EnumEnderSignal type : EnumEnderSignal.getCreativeList()) {
-            if (type.isEnabled())
+            if (type.isEnabled()) {
                 list.add(type.getItem());
+            }
         }
     }
 

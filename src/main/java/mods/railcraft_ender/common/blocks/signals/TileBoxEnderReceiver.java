@@ -26,6 +26,7 @@ import mods.railcraft.common.util.network.IGuiReturnHandler;
 import static mods.railcraft.common.plugins.forge.PowerPlugin.*;
 
 public class TileBoxEnderReceiver extends TileBoxActionManager implements IAspectActionManager, IGuiReturnHandler, IReceiverTile, IAspectProvider {
+
     private static final int FORCED_UPDATE = 512;
     private final EnderSignalReceiver receiver = new EnderSignalReceiver(getLocalizationTag(), this);
 
@@ -36,8 +37,9 @@ public class TileBoxEnderReceiver extends TileBoxActionManager implements IAspec
 
     @Override
     public boolean blockActivated(int side, EntityPlayer player) {
-        if (player.isSneaking())
+        if (player.isSneaking()) {
             return false;
+        }
         if (Game.isHost(worldObj)) {
             GuiHandler.openGui(EnumGui.BOX_ENDER_RECEIVER, player, worldObj, xCoord, yCoord, zCoord);
 //            mods.railcraft.common.gui.GuiHandler.openGui(mods.railcraft.common.gui.EnumGui.BOX_RECEIVER, player, worldObj, xCoord, yCoord, zCoord);
@@ -54,10 +56,11 @@ public class TileBoxEnderReceiver extends TileBoxActionManager implements IAspec
         }
         receiver.tickServer();
         SignalAspect prevAspect = receiver.getAspect();
-        if (receiver.isBeingPaired())
+        if (receiver.isBeingPaired()) {
             receiver.setAspect(SignalAspect.BLINK_YELLOW);
-        else if (!receiver.isPaired())
+        } else if (!receiver.isPaired()) {
             receiver.setAspect(SignalAspect.BLINK_RED);
+        }
         if (prevAspect != receiver.getAspect() || clock % FORCED_UPDATE == 0) {
             updateNeighbors();
             sendUpdateToClient();
@@ -78,8 +81,9 @@ public class TileBoxEnderReceiver extends TileBoxActionManager implements IAspec
     @Override
     public int getPowerOutput(int side) {
         TileEntity tile = WorldPlugin.getTileEntityOnSide(worldObj, xCoord, yCoord, zCoord, MiscTools.getOppositeSide(side));
-        if (tile instanceof TileBoxBase)
+        if (tile instanceof TileBoxBase) {
             return NO_POWER;
+        }
         return doesActionOnAspect(receiver.getAspect()) ? FULL_POWER : NO_POWER;
     }
 
@@ -117,8 +121,9 @@ public class TileBoxEnderReceiver extends TileBoxActionManager implements IAspec
     @Override
     public boolean isConnected(ForgeDirection side) {
         TileEntity tile = tileCache.getTileOnSide(side);
-        if (tile instanceof TileBoxBase)
+        if (tile instanceof TileBoxBase) {
             return ((TileBoxBase) tile).canReceiveAspect();
+        }
         return false;
     }
 

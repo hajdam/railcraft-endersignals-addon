@@ -73,5 +73,4 @@ public abstract class TileBoxSecured extends TileBoxBase implements IAspectActio
             lockController.setCurrentState(lockState);
         }
     }
-
 }

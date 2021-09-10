@@ -14,7 +14,7 @@ import net.minecraft.init.Items;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
 public class ModuleSignals {
-    
+
     private ModuleSignals() {
     }
 
@@ -33,7 +33,7 @@ public class ModuleSignals {
         Block blockSignal = RailcraftEnderBlocks.getBlockSignal();
         if (blockSignal != null) {
 
-            // Define Ender Receiver Box
+            // Define Ender Receiver Box Recipe
             {
                 EnumEnderSignal structure = EnumEnderSignal.BOX_ENDER_RECEIVER;
                 ItemStack stack = structure.getItem();
@@ -47,7 +47,7 @@ public class ModuleSignals {
                         'C', RailcraftItem.circuit.getRecipeObject(ItemCircuit.EnumCircuit.RECEIVER));
             }
 
-            // Define Ender Controller Box
+            // Define Ender Controller Box Recipe
             {
                 EnumEnderSignal structure = EnumEnderSignal.BOX_ENDER_CONTROLLER;
                 ItemStack stack = structure.getItem();
@@ -62,12 +62,13 @@ public class ModuleSignals {
             }
         }
     }
-    
+
     private static void initSecond() {
         // Finish initializing ItemRegistry
         for (EnumEnderSignal type : EnumEnderSignal.values()) {
-            if (type.isEnabled())
+            if (type.isEnabled()) {
                 RailcraftRegistry.register(type.getItem());
+            }
         }
     }
 }

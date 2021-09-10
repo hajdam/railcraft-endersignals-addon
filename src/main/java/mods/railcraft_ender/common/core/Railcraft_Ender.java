@@ -14,7 +14,7 @@ public class Railcraft_Ender {
 
     public static final String MODID = "railcraft_ender";
     public static final String MODNAME = "Railcraft Ender Signals Additions";
-    public static final String MODVER = "0.1.0";
+    public static final String MODVER = "0.1.1";
 
     @Instance("railcraft_ender")
     public static Railcraft_Ender instance;
@@ -30,7 +30,7 @@ public class Railcraft_Ender {
 
         proxy.preInitClient();
     }
-    
+
     @EventHandler
     public static void init(FMLInitializationEvent event) {
         if (ModuleManager.Module.SIGNALS.isEnabled()) {

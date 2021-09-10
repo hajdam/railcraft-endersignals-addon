@@ -50,6 +50,7 @@ public class GuiBoxEnderController extends GuiBasic {
     protected void actionPerformed(GuiButton button) {
         if (tile == null)
             return;
+
         int normal = defaultAspect.ordinal();
         int redstone = poweredAspect.ordinal();
         switch (button.id) {
@@ -83,5 +84,4 @@ public class GuiBoxEnderController extends GuiBasic {
             PacketDispatcher.sendToServer(pkt);
         }
     }
-
 }

@@ -11,7 +11,7 @@ import net.minecraftforge.common.DimensionManager;
 import javax.annotation.Nullable;
 
 public class EnderSignalsCollection extends WorldSavedData {
-    
+
     private static int MAX_CACHE_SIZE = 200;
 
     private World worldObj;
@@ -19,20 +19,17 @@ public class EnderSignalsCollection extends WorldSavedData {
     private final Map<WorldCoordinate, SignalAspect> aspectsCache = new HashMap<WorldCoordinate, SignalAspect>();
     private NBTTagCompound aspectSignals;
 
-    public EnderSignalsCollection(String p_i1677_1_)
-    {
+    public EnderSignalsCollection(String p_i1677_1_) {
         super(p_i1677_1_);
     }
 
-    public EnderSignalsCollection(World worldObj)
-    {
+    public EnderSignalsCollection(World worldObj) {
         super("railcraft.endersignals");
         this.worldObj = worldObj;
         this.markDirty();
     }
 
-    public void tick()
-    {
+    public void tick() {
         ++this.tickCounter;
     }
 
@@ -49,17 +46,17 @@ public class EnderSignalsCollection extends WorldSavedData {
                 aspectsCache.put(coord, aspect);
             }
         }
-        
+
         return aspect;
     }
-    
+
     public void setAspect(WorldCoordinate coord, SignalAspect aspect) {
         if (!aspectsCache.containsKey(coord) && aspectsCache.size() >= MAX_CACHE_SIZE) {
             releaseSomeFromCache();
         }
         aspectsCache.put(coord, aspect);
     }
-    
+
     private void releaseSomeFromCache() {
         // remove some item (eldest would be preferred)
         for (WorldCoordinate someCoord : aspectsCache.keySet()) {
@@ -70,7 +67,7 @@ public class EnderSignalsCollection extends WorldSavedData {
             break;
         }
     }
-    
+
     public void removeAspect(WorldCoordinate coord) {
         aspectsCache.remove(coord);
         String coordCode = coord.x + "," + coord.y + "," + coord.z;
@@ -82,8 +79,7 @@ public class EnderSignalsCollection extends WorldSavedData {
     /**
      * reads in data from the NBTTagCompound into this MapDataBase
      */
-    public void readFromNBT(NBTTagCompound tagCompound)
-    {
+    public void readFromNBT(NBTTagCompound tagCompound) {
         this.tickCounter = tagCompound.getInteger("Tick");
         this.aspectSignals = tagCompound.getCompoundTag("Aspects");
         if (aspectSignals == null) {
@@ -93,10 +89,10 @@ public class EnderSignalsCollection extends WorldSavedData {
     }
 
     /**
-     * write data to NBTTagCompound from this MapDataBase, similar to Entities and TileEntities
+     * write data to NBTTagCompound from this MapDataBase, similar to Entities
+     * and TileEntities
      */
-    public void writeToNBT(NBTTagCompound tagCompound)
-    {
+    public void writeToNBT(NBTTagCompound tagCompound) {
         tagCompound.setInteger("Tick", this.tickCounter);
         NBTTagCompound writeAspects;
         if (tagCompound.hasKey("Aspects")) {
@@ -109,14 +105,13 @@ public class EnderSignalsCollection extends WorldSavedData {
             aspectSignals = tagCompound;
         }
 
-        for (WorldCoordinate coord : this.aspectsCache.keySet())
-        {
+        for (WorldCoordinate coord : this.aspectsCache.keySet()) {
             SignalAspect aspect = this.aspectsCache.get(coord);
             String coordCode = coord.x + "," + coord.y + "," + coord.z;
             writeAspects.setInteger(coordCode, aspect.ordinal());
         }
     }
-    
+
     public static EnderSignalsCollection forDimension(int dimension) {
         World world = DimensionManager.getWorld(dimension);
         EnderSignalsCollection instance = (EnderSignalsCollection) world.perWorldStorage.loadData(EnderSignalsCollection.class, "railcraft.endersignals");
@@ -124,7 +119,7 @@ public class EnderSignalsCollection extends WorldSavedData {
             instance = new EnderSignalsCollection(world);
             world.perWorldStorage.setData("railcraft.endersignals", instance);
         }
-        
+
         return instance;
     }
 }

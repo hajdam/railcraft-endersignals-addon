@@ -3,7 +3,6 @@ package mods.railcraft_ender.common.blocks.signals;
 import mods.railcraft.api.signals.IControllerTile;
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft_ender.api.signals.EnderSignalController;
-import mods.railcraft_ender.common.blocks.signals.TileBoxBase;
 import mods.railcraft_ender.common.gui.GuiHandler;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.util.misc.Game;
@@ -12,7 +11,6 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
 import mods.railcraft_ender.common.gui.EnumGui;
 
@@ -22,6 +20,7 @@ import java.io.IOException;
 import java.util.EnumSet;
 
 public class TileBoxEnderController extends TileBoxBase implements IControllerTile, IGuiReturnHandler {
+
     private static final EnumSet<ForgeDirection> powerSides = EnumSet.of(ForgeDirection.DOWN, ForgeDirection.EAST, ForgeDirection.WEST, ForgeDirection.NORTH, ForgeDirection.SOUTH);
     private final EnderSignalController controller = new EnderSignalController(getLocalizationTag(), this);
     public SignalAspect defaultAspect = SignalAspect.GREEN;
@@ -35,8 +34,9 @@ public class TileBoxEnderController extends TileBoxBase implements IControllerTi
 
     @Override
     public boolean blockActivated(int side, EntityPlayer player) {
-        if (player.isSneaking())
+        if (player.isSneaking()) {
             return false;
+        }
         GuiHandler.openGui(EnumGui.BOX_ENDER_CONTROLLER, player, worldObj, xCoord, yCoord, zCoord);
         return true;
     }
@@ -51,21 +51,24 @@ public class TileBoxEnderController extends TileBoxBase implements IControllerTi
         }
         controller.tickServer();
         SignalAspect prevAspect = controller.getAspect();
-        if (controller.isBeingPaired())
+        if (controller.isBeingPaired()) {
             controller.setAspect(SignalAspect.BLINK_YELLOW);
-        else if (controller.isPaired())
+        } else if (controller.isPaired()) {
             controller.setAspect(determineAspect());
-        else
+        } else {
             controller.setAspect(SignalAspect.BLINK_RED);
-        if (prevAspect != controller.getAspect())
+        }
+        if (prevAspect != controller.getAspect()) {
             sendUpdateToClient();
+        }
     }
 
     @Override
     public void onNeighborBlockChange(Block block) {
         super.onNeighborBlockChange(block);
-        if (Game.isNotHost(getWorld()))
+        if (Game.isNotHost(getWorld())) {
             return;
+        }
         boolean p = isBeingPowered() || PowerPlugin.isRedstonePowered(worldObj, xCoord, yCoord, zCoord);
         if (p != powered) {
             powered = p;
@@ -75,10 +78,12 @@ public class TileBoxEnderController extends TileBoxBase implements IControllerTi
 
     private boolean isBeingPowered() {
         for (ForgeDirection side : powerSides) {
-            if (tileCache.getTileOnSide(side) instanceof TileBoxBase)
+            if (tileCache.getTileOnSide(side) instanceof TileBoxBase) {
                 continue;
-            if (PowerPlugin.isBlockBeingPowered(worldObj, xCoord, yCoord, zCoord, side))
+            }
+            if (PowerPlugin.isBlockBeingPowered(worldObj, xCoord, yCoord, zCoord, side)) {
                 return true;
+            }
 //            if (PowerPlugin.isBlockBeingPowered(worldObj, xCoord, yCoord - 1, zCoord, side))
 //                return true;
         }
@@ -92,8 +97,9 @@ public class TileBoxEnderController extends TileBoxBase implements IControllerTi
             TileEntity t = tileCache.getTileOnSide(forgeSide);
             if (t instanceof TileBoxBase) {
                 TileBoxBase tile = (TileBoxBase) t;
-                if (tile.canTransferAspect())
+                if (tile.canTransferAspect()) {
                     newAspect = SignalAspect.mostRestrictive(newAspect, tile.getBoxSignalAspect(forgeSide.getOpposite()));
+                }
             }
         }
         return newAspect;
@@ -164,8 +170,9 @@ public class TileBoxEnderController extends TileBoxBase implements IControllerTi
     @Override
     public boolean isConnected(ForgeDirection side) {
         TileEntity tile = tileCache.getTileOnSide(side);
-        if (tile instanceof TileBoxBase)
+        if (tile instanceof TileBoxBase) {
             return ((TileBoxBase) tile).canTransferAspect();
+        }
         return false;
     }
 

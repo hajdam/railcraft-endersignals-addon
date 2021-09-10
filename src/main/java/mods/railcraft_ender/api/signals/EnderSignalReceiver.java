@@ -12,8 +12,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class EnderSignalReceiver extends SignalReceiver { 
-    
+public class EnderSignalReceiver extends SignalReceiver {
+
     private boolean needsInit = true;
 
     @Nonnull
@@ -68,7 +68,7 @@ public class EnderSignalReceiver extends SignalReceiver {
     public String toString() {
         return String.format("Receiver:%s (%s)", aspect, super.toString());
     }
-    
+
     public void registerController(SignalController controller) {
         if (controller instanceof EnderSignalController) {
             super.registerController(controller);
@@ -95,11 +95,5 @@ public class EnderSignalReceiver extends SignalReceiver {
                 }
             }
         }
-    }
-
-    private void overrideAspect() {
-        WorldCoordinate coords = getCoords();
-        EnderSignalsCollection enderSignals = EnderSignalsCollection.forDimension(coords.dimension);
-        enderSignals.setAspect(coords, aspect);
     }
 }

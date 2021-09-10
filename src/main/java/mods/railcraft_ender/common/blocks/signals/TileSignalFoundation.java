@@ -15,6 +15,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import org.apache.logging.log4j.Level;
 
 public abstract class TileSignalFoundation extends RailcraftTileEntity {
+
     private boolean checkedBlock = false;
 
     public abstract ISignalTileDefinition getSignalType();
@@ -28,8 +29,9 @@ public abstract class TileSignalFoundation extends RailcraftTileEntity {
     public void updateEntity() {
         super.updateEntity();
 
-        if (Game.isNotHost(worldObj))
+        if (Game.isNotHost(worldObj)) {
             return;
+        }
 
         // Check and fix invalid block ids and metadata
         if (!checkedBlock) {

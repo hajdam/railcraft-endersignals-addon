@@ -1,5 +1,6 @@
-version = '1.7.10-0.1.0'
+version = '1.7.10-0.1.1-SNAPSHOT'
 group = "mods.railcraft_ender"
+description = 'Railcraft Ender Signals Addon'
 
 buildscript {
     repositories {

@@ -17,8 +17,9 @@ public class FactoryContainer {
 
     @SuppressWarnings("ConstantConditions")
     public static Container build(EnumGui gui, InventoryPlayer inv, Object obj, World world, int x, int y, int z) {
-        if (obj instanceof TileMultiBlock && !((TileMultiBlock) obj).isStructureValid())
+        if (obj instanceof TileMultiBlock && !((TileMultiBlock) obj).isStructureValid()) {
             return null;
+        }
 
         try {
             switch (gui) {
