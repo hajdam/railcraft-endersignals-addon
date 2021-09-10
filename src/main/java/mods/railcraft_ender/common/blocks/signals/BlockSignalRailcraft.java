@@ -35,8 +35,8 @@ public class BlockSignalRailcraft extends BlockSignalBase {
 
     @Override
     public void registerBlockIcons(IIconRegister iconRegister) {
-        EnumEnderSignal.BOX_ENDER_CONTROLLER.setIcon(iconRegister.registerIcon("railcraft:signal.box.ender-controller"));
-        EnumEnderSignal.BOX_ENDER_RECEIVER.setIcon(iconRegister.registerIcon("railcraft:signal.box.ender-receiver"));
+        EnumEnderSignal.BOX_ENDER_CONTROLLER.setIcon(iconRegister.registerIcon("railcraft_ender:signal.box.ender-controller"));
+        EnumEnderSignal.BOX_ENDER_RECEIVER.setIcon(iconRegister.registerIcon("railcraft_ender:signal.box.ender-receiver"));
     }
 
     @Override

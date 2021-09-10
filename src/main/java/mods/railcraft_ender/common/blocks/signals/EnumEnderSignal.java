@@ -1,11 +1,3 @@
-/* 
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
- */
 package mods.railcraft_ender.common.blocks.signals;
 
 import java.util.ArrayList;
@@ -16,7 +8,6 @@ import net.minecraft.util.IIcon;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.signals.ISignalTileDefinition;
 import mods.railcraft.common.blocks.signals.TileSignalFoundation;
-import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
 import net.minecraft.block.Block;
@@ -113,7 +104,7 @@ public enum EnumEnderSignal implements IIconProvider, ISignalTileDefinition {
     @Override
     public boolean isEnabled() {
         if (module == null) return false;
-        return ModuleManager.isModuleLoaded(getModule()) && getBlock() != null && RailcraftConfig.isSubBlockEnabled(getTag());
+        return ModuleManager.isModuleLoaded(getModule()) && getBlock() != null;
     }
 
     @Override

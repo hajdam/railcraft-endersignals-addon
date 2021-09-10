@@ -1,0 +1,6 @@
+﻿railcraft_ender.gui.tuner.incompatible=Ender signal boxes can't be connected to boxes of other types
+
+tile.railcraft.signal.box.ender.receiver.name=Ender Signal Receiver Box
+tile.railcraft.signal.box.ender.receiver.tip=Listens to Controller signals\n§o§9Aerial Linkages: 1x Receiver\n§o§9Adjacent Linkages: Emit\n§o§9Redstone Linkages: Emit\n§o§cRelevant Tools:\n§o§c- Signal Tuner
+tile.railcraft.signal.box.ender.controller.name=Ender Signal Controller Box
+tile.railcraft.signal.box.ender.controller.tip=Sends signals to Receivers\n§o§9Aerial Linkages: 1x Controller\n§o§9Adjacent Linkages: Listen\n§o§9Redstone Linkages: Listen\n§o§cRelevant Tools:\n§o§c- Signal Tuner

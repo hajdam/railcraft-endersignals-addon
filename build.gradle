@@ -7,20 +7,35 @@ buildscript {
         jcenter()
 		maven {
 			name = "forge"
-			url = "http://files.minecraftforge.net/maven"
+			url = "https://files.minecraftforge.net/maven"
 		}
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        // classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath ('com.anatawa12.forge:ForgeGradle:1.2-1.0.+') {
+            changing = true
+        }
     }
 }
 
-['java', 'distribution'].each {
+['java-library', 'maven-publish', 'forge'].each {
     apply plugin: it
 }
 import org.gradle.util.VersionNumber
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
 
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+minecraft {
+    version = "1.7.10-10.13.4.1614-1.7.10"
+    runDir = "run"
+}
 
 tasks.withType(JavaCompile) {
     options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
@@ -81,9 +96,50 @@ repositories {
 
 dependencies {
     implementation ":Railcraft_1.7.10-9.12.2.0"
-    implementation ":forgeSrc-1.7.10-10.13.4.1448-1.7.10"
+//    implementation ":forgeSrc-1.7.10-10.13.4.1448-1.7.10"
 //    implementation ":forge-1.7.10-10.13.4.1614-1.7.10-universal"
     implementation ':jsr305-3.0.2'
     implementation 'org.apache.logging.log4j:log4j-core:2.14.1'
     testCompile group : 'junit', name: 'junit', version: '4.10'
+}
+
+// This task creates a .jar file containing the source code of this mod.
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = "sources"
+    from sourceSets.main.allSource
+}
+
+// This task creates a .jar file containing a deobfuscated version of this mod, for other developers to use in a development environment.
+task devJar(type: Jar) {
+    classifier = "dev"
+    from sourceSets.main.output
+}
+
+// Creates the listed artifacts on building the mod.
+artifacts {
+    archives sourcesJar
+    archives devJar
+}
+
+// This block configures any maven publications you want to make.
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+        // Add any other artifacts here that you would like to publish!
+            artifact(jar) {
+                builtBy build
+            }
+            artifact(sourcesJar) {
+                builtBy sourcesJar
+            }
+            artifact(devJar) {
+                builtBy devJar
+            }
+        }
+    }
+
+    // This block selects the repositories you want to publish to.
+    repositories {
+        // Add the repositories you want to publish to here.
+    }
 }

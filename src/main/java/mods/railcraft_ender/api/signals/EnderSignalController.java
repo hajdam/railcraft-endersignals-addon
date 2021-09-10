@@ -6,6 +6,7 @@ import mods.railcraft.api.signals.SignalReceiver;
 import mods.railcraft.api.signals.SignalController;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import mods.railcraft.common.plugins.forge.*;
 
 import javax.annotation.Nonnull;
 import java.io.DataInputStream;
@@ -34,7 +35,7 @@ public class EnderSignalController extends SignalController {
             WorldCoordinate coords = getCoords();
             EnderSignalsCollection enderSignals = EnderSignalsCollection.forDimension(coords.dimension);
             enderSignals.setAspect(coords, aspect);
-            
+
             updateReceiver();
         }
     }
@@ -71,6 +72,8 @@ public class EnderSignalController extends SignalController {
 
             ((EnderSignalReceiver) receiver).registerController(this);
             receiver.onControllerAspectChange(this, getAspectFor(coords));
+        } else {
+            // ChatPlugin.sendLocalizedChatFromServer(player, "railcraft.gui.tuner.incompatible");
         }
     }
 

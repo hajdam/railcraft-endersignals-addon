@@ -12,7 +12,7 @@ import mods.railcraft.common.blocks.signals.IAspectActionManager;
 import mods.railcraft_ender.common.blocks.signals.TileBoxEnderController;
 import mods.railcraft.common.blocks.tracks.*;
 import mods.railcraft.common.carts.*;
-import mods.railcraft_ender.common.gui.EnumEnderGui;
+import mods.railcraft_ender.common.gui.EnumGui;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
 import net.minecraft.world.World;
@@ -22,7 +22,7 @@ import net.minecraft.world.World;
  */
 public class FactoryGui {
 
-    public static GuiScreen build(EnumEnderGui gui, InventoryPlayer inv, Object obj, World world, int x, int y, int z) {
+    public static GuiScreen build(EnumGui gui, InventoryPlayer inv, Object obj, World world, int x, int y, int z) {
         if (obj instanceof TileMultiBlock && !((TileMultiBlock) obj).isStructureValid())
             return null;
 

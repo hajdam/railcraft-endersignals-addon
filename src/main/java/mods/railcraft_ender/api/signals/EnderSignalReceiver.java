@@ -70,7 +70,11 @@ public class EnderSignalReceiver extends SignalReceiver {
     }
     
     public void registerController(SignalController controller) {
-        super.registerController(controller);
+        if (controller instanceof EnderSignalController) {
+            super.registerController(controller);
+        } else {
+            // TODO
+        }
     }
 
     @Override

@@ -8,7 +8,7 @@ import mods.railcraft.common.blocks.machine.alpha.*;
 import mods.railcraft.common.blocks.machine.gamma.*;
 import mods.railcraft.common.blocks.signals.IAspectActionManager;
 import mods.railcraft.common.carts.*;
-import mods.railcraft_ender.common.gui.EnumEnderGui;
+import mods.railcraft_ender.common.gui.EnumGui;
 import mods.railcraft.common.util.misc.Game;
 import net.minecraft.world.World;
 import mods.railcraft.common.gui.containers.ContainerAspectAction;
@@ -16,7 +16,7 @@ import mods.railcraft.common.gui.containers.ContainerAspectAction;
 public class FactoryContainer {
 
     @SuppressWarnings("ConstantConditions")
-    public static Container build(EnumEnderGui gui, InventoryPlayer inv, Object obj, World world, int x, int y, int z) {
+    public static Container build(EnumGui gui, InventoryPlayer inv, Object obj, World world, int x, int y, int z) {
         if (obj instanceof TileMultiBlock && !((TileMultiBlock) obj).isStructureValid())
             return null;
 

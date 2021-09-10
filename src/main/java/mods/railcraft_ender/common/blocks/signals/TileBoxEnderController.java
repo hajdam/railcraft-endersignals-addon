@@ -4,7 +4,7 @@ import mods.railcraft.api.signals.IControllerTile;
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft_ender.api.signals.EnderSignalController;
 import mods.railcraft.common.blocks.signals.TileBoxBase;
-import mods.railcraft_ender.common.gui.GuiEnderHandler;
+import mods.railcraft_ender.common.gui.GuiHandler;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
@@ -14,7 +14,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
-import mods.railcraft_ender.common.gui.EnumEnderGui;
+import mods.railcraft_ender.common.gui.EnumGui;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -37,7 +37,7 @@ public class TileBoxEnderController extends TileBoxBase implements IControllerTi
     public boolean blockActivated(int side, EntityPlayer player) {
         if (player.isSneaking())
             return false;
-        GuiEnderHandler.openGui(EnumEnderGui.BOX_ENDER_CONTROLLER, player, worldObj, xCoord, yCoord, zCoord);
+        GuiHandler.openGui(EnumGui.BOX_ENDER_CONTROLLER, player, worldObj, xCoord, yCoord, zCoord);
         return true;
     }
 

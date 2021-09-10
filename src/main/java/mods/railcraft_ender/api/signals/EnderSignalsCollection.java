@@ -24,16 +24,11 @@ public class EnderSignalsCollection extends WorldSavedData {
         super(p_i1677_1_);
     }
 
-    public EnderSignalsCollection(World p_i1678_1_)
+    public EnderSignalsCollection(World worldObj)
     {
         super("railcraft.endersignals");
-        this.worldObj = p_i1678_1_;
+        this.worldObj = worldObj;
         this.markDirty();
-    }
-
-    public void func_82566_a(World p_82566_1_)
-    {
-        this.worldObj = p_82566_1_;
     }
 
     public void tick()
