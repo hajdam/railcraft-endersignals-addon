@@ -3,7 +3,7 @@ package mods.railcraft_ender.common.gui;
 public enum EnumGui {
 
     BOX_ENDER_CONTROLLER(false),
-    BOX_ENDER_RECEIVER(true),;
+    BOX_ENDER_RECEIVER(true),; // TODO: is true in Railcraft
 
     private final boolean hasContainer;
 
@@ -16,13 +16,6 @@ public enum EnumGui {
     }
 
     public static EnumGui fromOrdinal(int i) {
-        switch (i) {
-            case 0:
-                return BOX_ENDER_CONTROLLER;
-            case 1:
-                return BOX_ENDER_RECEIVER;
-        }
-
-        return null;
+        return values()[i];
     }
 }

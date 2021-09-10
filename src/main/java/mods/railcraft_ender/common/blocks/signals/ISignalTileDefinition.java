@@ -17,4 +17,5 @@ public interface ISignalTileDefinition {
     int getMeta();
 
     Class<? extends TileSignalFoundation> getTileClass();
+
 }

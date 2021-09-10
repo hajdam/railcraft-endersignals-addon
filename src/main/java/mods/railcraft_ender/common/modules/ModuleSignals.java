@@ -8,7 +8,10 @@ import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft_ender.common.blocks.signals.EnumEnderSignal;
 import mods.railcraft_ender.common.blocks.RailcraftEnderBlocks;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+import mods.railcraft_ender.common.core.Railcraft_Ender;
+import mods.railcraft_ender.common.gui.GuiHandler;
 import net.minecraft.init.Items;
+import cpw.mods.fml.common.network.NetworkRegistry;
 
 public class ModuleSignals {
     
@@ -20,6 +23,7 @@ public class ModuleSignals {
     }
 
     public static void initFirst() {
+        NetworkRegistry.INSTANCE.registerGuiHandler(Railcraft_Ender.getMod(), new GuiHandler());
     }
 
     public static void init() {

@@ -1,4 +1,4 @@
-railcraft.gui.box.aspect.action=Emit Redstone on Aspect
+railcraft_ender.gui.box.aspect.action=Emit Redstone on Aspect
 
 ﻿railcraft_ender.gui.tuner.incompatible=Ender signal boxes can't be connected to boxes of other types
 
