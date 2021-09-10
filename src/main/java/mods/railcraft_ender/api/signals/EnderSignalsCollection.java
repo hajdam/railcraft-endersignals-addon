@@ -74,7 +74,9 @@ public class EnderSignalsCollection extends WorldSavedData {
     public void removeAspect(WorldCoordinate coord) {
         aspectsCache.remove(coord);
         String coordCode = coord.x + "," + coord.y + "," + coord.z;
-        aspectSignals.removeTag(coordCode);
+        if (aspectSignals != null) {
+            aspectSignals.removeTag(coordCode);
+        }
     }
 
     /**

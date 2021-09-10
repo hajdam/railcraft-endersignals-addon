@@ -1,7 +1,7 @@
 package mods.railcraft_ender.common.blocks;
 
 import java.util.List;
-import mods.railcraft.common.blocks.signals.ItemSignal;
+import mods.railcraft_ender.common.blocks.signals.ItemSignal;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;

@@ -39,7 +39,8 @@ public class TileBoxEnderReceiver extends TileBoxActionManager implements IAspec
         if (player.isSneaking())
             return false;
         if (Game.isHost(worldObj))
-            GuiHandler.openGui(EnumGui.BOX_ENDER_RECEIVER, player, worldObj, xCoord, yCoord, zCoord);
+//            GuiHandler.openGui(EnumGui.BOX_ENDER_RECEIVER, player, worldObj, xCoord, yCoord, zCoord);
+            mods.railcraft.common.gui.GuiHandler.openGui(mods.railcraft.common.gui.EnumGui.BOX_RECEIVER, player, worldObj, xCoord, yCoord, zCoord);
         return true;
     }
 
