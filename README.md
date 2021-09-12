@@ -13,6 +13,17 @@ Screenshot
 
 ![Screenshot](images/example_screenshot.png?raw=true)
 
+Recipes
+-------
+
+Ender Controller
+
+![Controller Recipe](images/controller_recipe.png?raw=true)
+
+Ender Receiver
+
+![Receiver Recipe](images/receiver_recipe.png?raw=true)
+
 Building
 --------
 

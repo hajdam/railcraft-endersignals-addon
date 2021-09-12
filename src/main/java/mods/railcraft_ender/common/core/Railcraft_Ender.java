@@ -13,7 +13,7 @@ import mods.railcraft.common.modules.ModuleManager;
 public class Railcraft_Ender {
 
     public static final String MODID = "railcraft_ender";
-    public static final String MODNAME = "Railcraft Ender Signals Additions";
+    public static final String MODNAME = "Railcraft Ender Signals Addon";
     public static final String MODVER = "0.1.1";
 
     @Instance("railcraft_ender")
