@@ -4,16 +4,17 @@ import org.apache.logging.log4j.Level;
 import net.minecraft.inventory.Container;
 import net.minecraft.entity.player.InventoryPlayer;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
-import mods.railcraft.common.blocks.machine.alpha.*;
-import mods.railcraft.common.blocks.machine.gamma.*;
 import mods.railcraft.common.blocks.signals.IAspectActionManager;
-import mods.railcraft.common.carts.*;
 import mods.railcraft_ender.common.gui.EnumGui;
 import mods.railcraft.common.util.misc.Game;
 import net.minecraft.world.World;
 import mods.railcraft.common.gui.containers.ContainerAspectAction;
 
 public class FactoryContainer {
+
+    private FactoryContainer() {
+
+    }
 
     @SuppressWarnings("ConstantConditions")
     public static Container build(EnumGui gui, InventoryPlayer inv, Object obj, World world, int x, int y, int z) {
