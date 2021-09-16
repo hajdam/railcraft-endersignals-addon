@@ -23,8 +23,8 @@ public class TileBoxEnderController extends TileBoxBase implements IControllerTi
 
     private static final EnumSet<ForgeDirection> powerSides = EnumSet.of(ForgeDirection.DOWN, ForgeDirection.EAST, ForgeDirection.WEST, ForgeDirection.NORTH, ForgeDirection.SOUTH);
     private final EnderSignalController controller = new EnderSignalController(getLocalizationTag(), this);
-    public SignalAspect defaultAspect = SignalAspect.GREEN;
-    public SignalAspect poweredAspect = SignalAspect.RED;
+    public SignalAspect defaultAspect = SignalAspect.OFF;
+    public SignalAspect poweredAspect = SignalAspect.GREEN;
     private boolean powered;
 
     @Override

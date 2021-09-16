@@ -13,7 +13,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 import mods.railcraft.api.signals.IReceiverTile;
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft.api.signals.SignalController;
-import mods.railcraft_ender.common.blocks.signals.TileBoxBase;
 import mods.railcraft.common.blocks.signals.IAspectActionManager;
 import mods.railcraft_ender.common.gui.EnumGui;
 import mods.railcraft_ender.common.gui.GuiHandler;
