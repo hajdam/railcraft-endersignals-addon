@@ -1,11 +1,11 @@
 package mods.railcraft_ender.api.signals;
 
-import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft.api.signals.SignalReceiver;
 import mods.railcraft.api.signals.SignalController;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 
 import javax.annotation.Nonnull;
 import java.io.DataInputStream;
@@ -81,7 +81,7 @@ public class EnderSignalReceiver extends SignalReceiver {
     public void tickServer() {
         if (needsInit) {
             needsInit = false;
-            for (WorldCoordinate pair : getPairs()) {
+            for (BlockPos pair : getPairs()) {
                 SignalController controller = getControllerAt(pair);
                 if (controller != null) {
                     onControllerAspectChange(controller, controller.getAspectFor(getCoords()));

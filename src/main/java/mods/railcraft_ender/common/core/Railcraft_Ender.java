@@ -10,7 +10,7 @@ import mods.railcraft_ender.common.modules.ModuleSignals;
 import mods.railcraft.common.modules.ModuleManager;
 
 @Mod(modid = Railcraft_Ender.MODID, name = Railcraft_Ender.MODNAME, version = Railcraft_Ender.MODVER, dependencies = "after:Railcraft")
-public class Railcraft_Ender {
+public final class Railcraft_Ender {
 
     public static final String MODID = "railcraft_ender";
     public static final String MODNAME = "Railcraft Ender Signals Addon";

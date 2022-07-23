@@ -14,20 +14,20 @@ buildscript {
         }
     }
     dependencies {
-        // classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
-        classpath ('com.anatawa12.forge:ForgeGradle:1.2-1.0.+') {
-            changing = true
-        }
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+//        classpath ('com.anatawa12.forge:ForgeGradle:2.2.+') {
+//            changing = true
+//        }
     }
 }
 
-['java-library', 'maven-publish', 'forge'].each {
+['java', 'maven-publish', 'net.minecraftforge.gradle.forge'].each { 
     apply plugin: it
 }
 import org.gradle.util.VersionNumber
 
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
@@ -36,6 +36,7 @@ group = project.group
 
 minecraft {
     version = project.minecraft_version + "-" + project.forge_version
+    mappings = project.mcp_version.replace("-", "_");
     runDir = "run"
 }
 
@@ -79,10 +80,10 @@ artifacts {
     tests testJar
 }
 
-task sourceJar(type: Jar) {
-    classifier = 'sources'
-    from sourceSets.main.java
-}
+//task sourceJar(type: Jar) {
+//    classifier = 'sources'
+//    from sourceSets.main.java
+//}
 
 javadoc {
     if (JavaVersion.current() != JavaVersion.VERSION_1_8) {
@@ -103,9 +104,9 @@ repositories {
 }
 
 dependencies {
-    implementation ":Railcraft_1.7.10-9.12.2.0"
-    implementation ':jsr305-3.0.2'
-    implementation 'org.apache.logging.log4j:log4j-core:2.14.1'
+    compile ":Railcraft_1.10.2-10.4.1"
+    compile ':jsr305-3.0.2'
+    compile 'org.apache.logging.log4j:log4j-core:2.14.1'
     testCompile group : 'junit', name: 'junit', version: '4.10'
 }
 

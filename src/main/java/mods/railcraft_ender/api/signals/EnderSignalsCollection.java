@@ -2,7 +2,7 @@ package mods.railcraft_ender.api.signals;
 
 import java.util.HashMap;
 import java.util.Map;
-import mods.railcraft.api.core.WorldCoordinate;
+import net.minecraft.util.math.BlockPos;
 import mods.railcraft.api.signals.SignalAspect;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -16,7 +16,7 @@ public class EnderSignalsCollection extends WorldSavedData {
 
     private World worldObj;
     private int tickCounter;
-    private final Map<WorldCoordinate, SignalAspect> aspectsCache = new HashMap<WorldCoordinate, SignalAspect>();
+    private final Map<BlockPos, SignalAspect> aspectsCache = new HashMap<BlockPos, SignalAspect>();
     private NBTTagCompound aspectSignals;
 
     public EnderSignalsCollection(String p_i1677_1_) {
@@ -34,7 +34,7 @@ public class EnderSignalsCollection extends WorldSavedData {
     }
 
     @Nullable
-    public SignalAspect getAspect(WorldCoordinate coord) {
+    public SignalAspect getAspect(BlockPos coord) {
         SignalAspect aspect = aspectsCache.get(coord);
         if (aspect == null) {
             String coordCode = coord.x + "," + coord.y + "," + coord.z;
@@ -50,7 +50,7 @@ public class EnderSignalsCollection extends WorldSavedData {
         return aspect;
     }
 
-    public void setAspect(WorldCoordinate coord, SignalAspect aspect) {
+    public void setAspect(BlockPos coord, SignalAspect aspect) {
         if (!aspectsCache.containsKey(coord) && aspectsCache.size() >= MAX_CACHE_SIZE) {
             releaseSomeFromCache();
         }
@@ -59,7 +59,7 @@ public class EnderSignalsCollection extends WorldSavedData {
 
     private void releaseSomeFromCache() {
         // remove some item (eldest would be preferred)
-        for (WorldCoordinate someCoord : aspectsCache.keySet()) {
+        for (BlockPos someCoord : aspectsCache.keySet()) {
             SignalAspect someAspect = aspectsCache.get(someCoord);
             String coordCode = someCoord.x + "," + someCoord.y + "," + someCoord.z;
             aspectSignals.setInteger(coordCode, someAspect.ordinal());
@@ -68,7 +68,7 @@ public class EnderSignalsCollection extends WorldSavedData {
         }
     }
 
-    public void removeAspect(WorldCoordinate coord) {
+    public void removeAspect(BlockPos coord) {
         aspectsCache.remove(coord);
         String coordCode = coord.x + "," + coord.y + "," + coord.z;
         if (aspectSignals != null) {
@@ -105,7 +105,7 @@ public class EnderSignalsCollection extends WorldSavedData {
             aspectSignals = tagCompound;
         }
 
-        for (WorldCoordinate coord : this.aspectsCache.keySet()) {
+        for (BlockPos coord : this.aspectsCache.keySet()) {
             SignalAspect aspect = this.aspectsCache.get(coord);
             String coordCode = coord.x + "," + coord.y + "," + coord.z;
             writeAspects.setInteger(coordCode, aspect.ordinal());

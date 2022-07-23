@@ -1,12 +1,11 @@
 package mods.railcraft_ender.api.signals;
 
-import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft.api.signals.SignalReceiver;
 import mods.railcraft.api.signals.SignalController;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import mods.railcraft.common.plugins.forge.*;
+import net.minecraft.util.math.BlockPos;
 
 import javax.annotation.Nonnull;
 import java.io.DataInputStream;
@@ -32,7 +31,7 @@ public class EnderSignalController extends SignalController {
         if (this.aspect != aspect) {
             this.aspect = aspect;
 
-            WorldCoordinate coords = getCoords();
+            BlockPos coords = getCoords();
             EnderSignalsCollection enderSignals = EnderSignalsCollection.forDimension(coords.dimension);
             enderSignals.setAspect(coords, aspect);
 
@@ -42,7 +41,7 @@ public class EnderSignalController extends SignalController {
 
     @Nonnull
     @Override
-    public SignalAspect getAspectFor(WorldCoordinate receiver) {
+    public SignalAspect getAspectFor(BlockPos receiver) {
         return aspect;
     }
 
@@ -56,7 +55,7 @@ public class EnderSignalController extends SignalController {
     }
 
     private void updateReceiver() {
-        for (WorldCoordinate recv : getPairs()) {
+        for (BlockPos recv : getPairs()) {
             SignalReceiver receiver = getReceiverAt(recv);
             if (receiver != null) {
                 receiver.onControllerAspectChange(this, aspect);
@@ -67,7 +66,7 @@ public class EnderSignalController extends SignalController {
     @Override
     public void registerReceiver(SignalReceiver receiver) {
         if (receiver instanceof EnderSignalReceiver) {
-            WorldCoordinate coords = receiver.getCoords();
+            BlockPos coords = receiver.getCoords();
             addPairing(coords);
 
             ((EnderSignalReceiver) receiver).registerController(this);
@@ -107,7 +106,7 @@ public class EnderSignalController extends SignalController {
     }
 
     public void onBlockRemoval() {
-        WorldCoordinate coords = getCoords();
+        BlockPos coords = getCoords();
         EnderSignalsCollection enderSignals = EnderSignalsCollection.forDimension(coords.dimension);
         enderSignals.removeAspect(coords);
     }

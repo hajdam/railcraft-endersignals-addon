@@ -5,30 +5,23 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import mods.railcraft.api.signals.SignalAspect;
+import mods.railcraft.common.util.misc.AABBFactory;
 import net.minecraft.tileentity.TileEntity;
 
 public abstract class TileBoxBase extends TileSignalFoundation {
 
-    private static final float BOUND = 0.1f;
+    private static final float PIXEL = 1F / 16F;
+    private static final AxisAlignedBB SELECTION_BOX = AABBFactory.start().box().expandHorizontally(-PIXEL * 2).raiseCeiling(-PIXEL).build();
+    private static final AxisAlignedBB BOUNDING_BOX = AABBFactory.start().box().raiseCeiling(-PIXEL).build();
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess world, int i, int j, int k) {
-        getBlockType().setBlockBounds(BOUND, 0, BOUND, 1 - BOUND, 1 - BOUND / 2, 1 - BOUND);
+    public AxisAlignedBB getBoundingBox(IBlockAccess world, BlockPos pos) {
+        return BOUNDING_BOX;
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int i, int j, int k) {
-        return AxisAlignedBB.getBoundingBox(i + BOUND, j, k + BOUND, i + 1 - BOUND, j + 1 - BOUND / 2, k + 1 - BOUND);
-    }
-
-    @Override
-    public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int i, int j, int k) {
-        return AxisAlignedBB.getBoundingBox(i + BOUND, j, k + BOUND, i + 1 - BOUND, j + 1 - BOUND / 2, k + 1 - BOUND);
-    }
-
-    @Override
-    public boolean canUpdate() {
-        return true;
+    public AxisAlignedBB getSelectedBoundingBox(World world, BlockPos pos) {
+        return SELECTION_BOX.offset(pos);
     }
 
     public abstract boolean isConnected(ForgeDirection side);
@@ -43,7 +36,7 @@ public abstract class TileBoxBase extends TileSignalFoundation {
         return false;
     }
 
-    public void onNeighborStateChange(TileBoxBase neighbor, ForgeDirection side) {
+    public void onNeighborStateChange(mods.railcraft.common.blocks.machine.wayobjects.boxes.TileBoxBase neighbor, EnumFacing side) {
     }
 
     public final void updateNeighborBoxes() {
@@ -57,24 +50,13 @@ public abstract class TileBoxBase extends TileSignalFoundation {
         }
     }
 
-    public boolean isEmittingRedstone(ForgeDirection side) {
-        return false;
-    }
-
-    public boolean canEmitRedstone(ForgeDirection side) {
-        return false;
-    }
-
-    @Override
-    public boolean isSideSolid(IBlockAccess world, int i, int j, int k, ForgeDirection side) {
-        if (side == ForgeDirection.UP) {
-            return true;
-        }
-        return false;
-    }
-
     @Override
     public boolean canConnectRedstone(int dir) {
         return true;
+    }
+
+    @Override
+    public AxisAlignedBB getRenderBoundingBox() {
+        return TileEntity.INFINITE_EXTENT_AABB;
     }
 }
